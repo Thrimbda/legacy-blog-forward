@@ -6,13 +6,15 @@
   </head>
   <script language="javascript">
     // copy from https://blog.walterlv.com/post/multiple-domains-for-github-pages.html
-    let domain = "0xc1.space";
-    let current = window.location.href;
-    let target = current.substring(
+    const domain = "0xc1.space";
+    const current = window.location.href;
+    const target = current.substring(
       current.indexOf("/", current.indexOf(":") + 3)
     );
-    window.location.href = "//" + domain + target;
-    location.href = "//" + domain + target;
+    const newURL = new URL(`https://${domain}${target}`);
+    newURL.searchParams.set("from", "legacy");
+    window.location.href = newURL.toString();
+    location.href = newURL.toString();
   </script>
   <body>
     forwarding... - Thrimbda.com -> 0xc1.space
